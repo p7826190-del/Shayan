@@ -387,7 +387,6 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ profile }) => {
       ]);
 
       await fetchAdminData();
-      setShowEnrollForm(false);
       setNewTeamsLink('');
     } catch (err) {
       console.error(err);
@@ -752,7 +751,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ profile }) => {
                         
                         <div style={{ background: 'rgba(16, 185, 129, 0.05)', border: '1px solid var(--border-emerald)', borderRadius: 'var(--radius-sm)', padding: '10px', marginTop: '10px', fontSize: '0.85rem' }}>
                           <div>🧑‍🏫 <strong>Tutor:</strong> {tutorName}</div>
-                          <div style={{ marginTop: '4px' }}>📅 <strong>Time:</strong> {new Date(req.scheduled_at).toLocaleString()}</div>
+                          <div style={{ marginTop: '4px' }}>📅 <strong>Time:</strong> {req.scheduled_at ? new Date(req.scheduled_at).toLocaleString() : 'Pending'}</div>
                         </div>
 
                         <div style={{ display: 'flex', gap: '10px', marginTop: '12px', justifyContent: 'flex-end' }}>
