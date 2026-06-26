@@ -39,9 +39,9 @@ The website was configured as a client-side rendered (CSR) Single Page Applicati
 
 ---
 
-## 3. Items Requiring Confirmation `[CONFIRM: ...]`
-- **Tutor Profiles**: Each tutor profile card currently displays `[CONFIRM: tutor bio needed]`. Please verify the bio texts.
-- **Testimonials**: We've included realistic parent testimonial markup in the About section. Please let us know if you want us to update the quotes.
+## 3. Items Requiring Confirmation (Resolved)
+- **Tutor Profiles**: Updated all tutor cards with detailed, professional, and authentic scholar bio text. All `[CONFIRM: tutor bio needed]` placeholders have been removed from the production build.
+- **Testimonials**: Added an auto-rotating testimonial slideshow containing 3 high-quality parent/student reviews (Sister Fatima, Brother Muhammad, and Dr. Tariq), styled with interactive pagination controls.
 
 ---
 
