@@ -109,7 +109,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ profile }) => {
   const [newTeacherId, setNewTeacherId] = useState('');
   const [newCourse, setNewCourse] = useState('Quran Reading / Nazra');
   const [newDays, setNewDays] = useState(3);
-  const [newPrice, setNewPrice] = useState(40);
+  const [newPrice, setNewPrice] = useState(28);
   const [newTime, setNewTime] = useState('18:00 UTC');
   const [newTeamsLink, setNewTeamsLink] = useState('');
 
@@ -122,7 +122,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ profile }) => {
   
   // Manual Invoice Form state
   const [invoiceStudentId, setInvoiceStudentId] = useState('');
-  const [invoiceAmount, setInvoiceAmount] = useState(40);
+  const [invoiceAmount, setInvoiceAmount] = useState(28);
   const [invoiceDate, setInvoiceDate] = useState(new Date().toISOString().split('T')[0]);
   const [showInvoiceForm, setShowInvoiceForm] = useState(false);
 
@@ -850,7 +850,15 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ profile }) => {
                   </div>
                   <div>
                     <label className="input-label">Days/Week</label>
-                    <select value={newDays} onChange={(e) => setNewDays(Number(e.target.value))} className="input-field">
+                    <select 
+                      value={newDays} 
+                      onChange={(e) => {
+                        const days = Number(e.target.value);
+                        setNewDays(days);
+                        setNewPrice(days === 3 ? 28 : 39.99);
+                      }} 
+                      className="input-field"
+                    >
                       <option value={3}>3 Days</option>
                       <option value={5}>5 Days</option>
                     </select>

@@ -192,12 +192,12 @@ Please confirm my free trial session.`
     }
   };
 
-  // Pricing configs updated: Plan 1 = $30 (4 days), Plan 2 = $50 (6 days). Other currencies scaled proportionally.
+  // Pricing configs updated: Plan 1 = $28 (3 days), Plan 2 = $39.99 (5 days). Other currencies scaled proportionally.
   const pricingPlans = {
-    USD: { symbol: '$', rate4: '30', rate6: '50' },
-    GBP: { symbol: '£', rate4: '22', rate6: '40' },
-    CAD: { symbol: 'C$', rate4: '40', rate6: '65' },
-    PKR: { symbol: 'Rs.', rate4: '6,000', rate6: '10,000' },
+    USD: { symbol: '$', rate3: '28', rate5: '39.99' },
+    GBP: { symbol: '£', rate3: '20', rate5: '30' },
+    CAD: { symbol: 'C$', rate3: '38', rate5: '55' },
+    PKR: { symbol: 'Rs.', rate3: '5,500', rate5: '8,000' },
   };
 
   const coursesList = [
@@ -647,12 +647,12 @@ Please confirm my free trial session.`
           </div>
           
           <div className="grid-container grid-2" style={{ maxWidth: '900px', margin: '0 auto' }}>
-            {/* Card 1: 4 Days/Week */}
+            {/* Card 1: 3 Days/Week */}
             <div className="glass-panel scroll-reveal" style={{ padding: '36px', textAlign: 'center', border: '1px solid var(--border-glass)' }}>
-              <h3 style={{ fontSize: '1.4rem', color: 'var(--primary-deep)', marginBottom: '8px' }}>4 Days / Week</h3>
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginBottom: '24px' }}>16 Classes per Month (30 Mins Daily)</p>
+              <h3 style={{ fontSize: '1.4rem', color: 'var(--primary-deep)', marginBottom: '8px' }}>3 Days / Week</h3>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginBottom: '24px' }}>12 Classes per Month (30 Mins Daily)</p>
               <div style={{ fontSize: '3.2rem', fontWeight: 800, color: 'var(--gold-accent)', marginBottom: '8px', fontFamily: 'var(--font-heading)' }}>
-                {pricingPlans[currency].symbol}{pricingPlans[currency].rate4}<span style={{ fontSize: '1.2rem', fontWeight: 500, color: 'var(--text-muted)' }}>/mo</span>
+                {pricingPlans[currency].symbol}{pricingPlans[currency].rate3}<span style={{ fontSize: '1.2rem', fontWeight: 500, color: 'var(--text-muted)' }}>/mo</span>
               </div>
               <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', margin: '24px 0 32px', textAlign: 'left', fontSize: '0.9rem' }}>
                 <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><Check size={16} color="var(--emerald-bright)" /> 1-on-1 private Teams lessons</li>
@@ -669,15 +669,15 @@ Please confirm my free trial session.`
               </button>
             </div>
             
-            {/* Card 2: 6 Days/Week (Stagger delay applied) */}
+            {/* Card 2: 5 Days/Week (Stagger delay applied) */}
             <div className="glass-panel scroll-reveal" style={{ padding: '36px', textAlign: 'center', border: '1.5px solid var(--gold-accent)', boxShadow: 'var(--shadow-gold)', position: 'relative', transitionDelay: '0.2s' }}>
               <div style={{ position: 'absolute', top: '-12px', right: '50%', transform: 'translateX(50%)' }}>
                 <span className="badge-gold" style={{ background: 'var(--gold-accent)', color: '#ffffff' }}>Most Popular</span>
               </div>
-              <h3 style={{ fontSize: '1.4rem', color: 'var(--primary-deep)', marginBottom: '8px' }}>6 Days / Week</h3>
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginBottom: '24px' }}>24 Classes per Month (30 Mins Daily)</p>
+              <h3 style={{ fontSize: '1.4rem', color: 'var(--primary-deep)', marginBottom: '8px' }}>5 Days / Week</h3>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginBottom: '24px' }}>20 Classes per Month (30 Mins Daily)</p>
               <div style={{ fontSize: '3.2rem', fontWeight: 800, color: 'var(--gold-accent)', marginBottom: '8px', fontFamily: 'var(--font-heading)' }}>
-                {pricingPlans[currency].symbol}{pricingPlans[currency].rate6}<span style={{ fontSize: '1.2rem', fontWeight: 500, color: 'var(--text-muted)' }}>/mo</span>
+                {pricingPlans[currency].symbol}{pricingPlans[currency].rate5}<span style={{ fontSize: '1.2rem', fontWeight: 500, color: 'var(--text-muted)' }}>/mo</span>
               </div>
               <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', margin: '24px 0 32px', textAlign: 'left', fontSize: '0.9rem' }}>
                 <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><Check size={16} color="var(--emerald-bright)" /> 1-on-1 private Teams lessons</li>
