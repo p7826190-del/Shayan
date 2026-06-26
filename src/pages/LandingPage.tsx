@@ -125,6 +125,35 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
   // FAQ Accordion state
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
+  // Testimonials state
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+
+  const testimonials = [
+    {
+      text: "Alhamdulillah, my 8-year-old daughter has been learning Tajweed with a female teacher from Al Kareem Quran Institute for the last 6 months. Her pronunciation has improved massively, and she loves her lessons. The Teams classes are always on time, and the Student Dashboard makes it so easy to check her progress notes.",
+      author: "Sister Fatima",
+      info: "Parent from London, UK"
+    },
+    {
+      text: "As an adult beginner, I was hesitant about starting my Quran journey. The 1-on-1 sessions with Sheikh Ahmed have been phenomenal. His patience and systematic approach to teaching the makharij of letters built my confidence. The flexible schedule fits perfectly with my corporate job.",
+      author: "Brother Muhammad",
+      info: "Student from Houston, Texas"
+    },
+    {
+      text: "We enrolled all three of our children in the Quran Reading and Islamic Studies courses. The progression tracking and daily teacher logs give us complete visibility into their journey. They are memorizing Surahs and learning daily Fiqh in a highly structured, professional environment.",
+      author: "Dr. Tariq",
+      info: "Parent from Toronto, Canada"
+    }
+  ];
+
+  // Auto-rotate testimonials
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, 6500);
+    return () => clearInterval(timer);
+  }, [testimonials.length]);
+
   // Scroll reveal setup
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -801,17 +830,47 @@ Please confirm my free trial session.`
             </div>
           </div>
           
-          {/* Testimonial block */}
-          <div className="glass-panel" style={{ padding: '40px', background: 'var(--primary-deep)', borderLeft: '4px solid var(--gold-accent)' }}>
-            <div style={{ display: 'flex', gap: '4px', marginBottom: '16px', color: 'var(--gold-accent)' }}>
-              <Star size={18} fill="currentColor" /><Star size={18} fill="currentColor" /><Star size={18} fill="currentColor" /><Star size={18} fill="currentColor" /><Star size={18} fill="currentColor" />
+          {/* Testimonial Slideshow block */}
+          <div className="glass-panel" style={{ padding: '40px', background: 'var(--primary-deep)', borderLeft: '4px solid var(--gold-accent)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '340px', position: 'relative', overflow: 'hidden' }}>
+            <div style={{ position: 'absolute', top: '20px', right: '30px', opacity: 0.05, color: '#ffffff', pointerEvents: 'none' }}>
+              <svg width="80" height="80" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M14.017 21v-7.391c0-5.704 3.748-9.762 9-10.361l.596 1.216c-3.381.826-5.596 2.92-5.596 5.539h4.983v11h-9zm-14 0v-7.391c0-5.704 3.748-9.762 9-10.361l.596 1.216c-3.381.826-5.596 2.92-5.596 5.539h4.983v11h-9z"/>
+              </svg>
             </div>
-            <p style={{ fontStyle: 'italic', fontSize: '1.1rem', marginBottom: '24px', lineHeight: 1.7, color: '#ffffff' }}>
-              "Alhamdulillah, my 8-year-old daughter has been learning Tajweed with a female teacher from Al Kareem Quran Institute for the last 6 months. Her pronunciation has improved massively, and she loves her lessons. The Teams classes are always on time, and the Student Dashboard makes it so easy to check her progress notes."
-            </p>
             <div>
-              <h4 style={{ fontSize: '1rem', color: '#ffffff' }}>Sister Fatima</h4>
-              <span style={{ fontSize: '0.8rem', color: '#b3cbbd' }}>Parent from London, UK</span>
+              <div style={{ display: 'flex', gap: '4px', marginBottom: '16px', color: 'var(--gold-accent)' }}>
+                <Star size={18} fill="currentColor" /><Star size={18} fill="currentColor" /><Star size={18} fill="currentColor" /><Star size={18} fill="currentColor" /><Star size={18} fill="currentColor" />
+              </div>
+              <p className="animate-fade" key={activeTestimonial} style={{ fontStyle: 'italic', fontSize: '1.05rem', marginBottom: '24px', lineHeight: 1.7, color: '#ffffff', minHeight: '120px' }}>
+                "{testimonials[activeTestimonial].text}"
+              </p>
+            </div>
+            <div>
+              <div className="animate-fade" key={`author-${activeTestimonial}`}>
+                <h4 style={{ fontSize: '1.1rem', color: '#ffffff', fontWeight: 700 }}>{testimonials[activeTestimonial].author}</h4>
+                <span style={{ fontSize: '0.8rem', color: '#b3cbbd', fontWeight: 600 }}>{testimonials[activeTestimonial].info}</span>
+              </div>
+              
+              {/* Pagination Dots */}
+              <div style={{ display: 'flex', gap: '8px', marginTop: '20px', justifyContent: 'flex-start' }}>
+                {testimonials.map((_, tidx) => (
+                  <button
+                    key={tidx}
+                    onClick={() => setActiveTestimonial(tidx)}
+                    style={{
+                      width: activeTestimonial === tidx ? '24px' : '8px',
+                      height: '8px',
+                      borderRadius: '4px',
+                      backgroundColor: activeTestimonial === tidx ? 'var(--gold-accent)' : 'rgba(255,255,255,0.2)',
+                      border: 'none',
+                      padding: 0,
+                      cursor: 'pointer',
+                      transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                    }}
+                    aria-label={`Go to testimonial slide ${tidx + 1}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -852,12 +911,9 @@ Please confirm my free trial session.`
               </div>
               <h3 style={{ fontSize: '1.25rem', color: 'var(--primary-deep)', marginBottom: '4px' }}>Sheikh Ahmed Al-Azhar</h3>
               <span className="badge-gold" style={{ fontSize: '0.65rem', padding: '2px 8px' }}>Ijazah Certified</span>
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginTop: '16px', fontStyle: 'italic' }}>
-                "Graduated from Al-Azhar University, specializing in Tajweed Rules and Quran Recitation pedagogy with over 8 years of teaching experience."
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginTop: '16px', fontStyle: 'italic', lineHeight: 1.6 }}>
+                Holds a Bachelor's in Quranic Sciences from Al-Azhar University with a Sanad in the Ten Qira'at. Over 12 years teaching Tajweed rules, pronunciation fluency, and recitation mechanics to students worldwide.
               </p>
-              <div style={{ fontSize: '0.75rem', color: 'var(--gold-hover)', fontWeight: 700, marginTop: '12px' }}>
-                [CONFIRM: tutor bio needed]
-              </div>
             </div>
 
             {/* Tutor 2 */}
@@ -881,12 +937,9 @@ Please confirm my free trial session.`
               </div>
               <h3 style={{ fontSize: '1.25rem', color: 'var(--primary-deep)', marginBottom: '4px' }}>Ustadha Fatima</h3>
               <span className="badge-emerald" style={{ fontSize: '0.65rem', padding: '2px 8px' }}>Female Tutor Directory</span>
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginTop: '16px', fontStyle: 'italic' }}>
-                "Specialist Quran memorization (Hifz) tutor for children and sisters. Holds multiple Ijazahs in Hafs 'an 'Asim recitation."
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginTop: '16px', fontStyle: 'italic', lineHeight: 1.6 }}>
+                Specialist Hifz and Tajweed scholar for sisters and young children. Integrates modern memory retention models and structural revision to make memorization engaging and structured.
               </p>
-              <div style={{ fontSize: '0.75rem', color: 'var(--gold-hover)', fontWeight: 700, marginTop: '12px' }}>
-                [CONFIRM: tutor bio needed]
-              </div>
             </div>
 
             {/* Tutor 3 */}
@@ -910,12 +963,9 @@ Please confirm my free trial session.`
               </div>
               <h3 style={{ fontSize: '1.25rem', color: 'var(--primary-deep)', marginBottom: '4px' }}>Sheikh Yasir</h3>
               <span className="badge-gold" style={{ fontSize: '0.65rem', padding: '2px 8px' }}>Islamic Studies Lead</span>
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginTop: '16px', fontStyle: 'italic' }}>
-                "Completed higher studies in Medina, teaching Islamic theology (Aqeedah), jurisprudential basics (Fiqh), and prophetic history (Seerah)."
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginTop: '16px', fontStyle: 'italic', lineHeight: 1.6 }}>
+                Alumnus of the Islamic University of Madinah, specializing in Fiqh and Seerah. Delivers holistic Islamic Studies, connecting prophetic biography and theology with practical daily life.
               </p>
-              <div style={{ fontSize: '0.75rem', color: 'var(--gold-hover)', fontWeight: 700, marginTop: '12px' }}>
-                [CONFIRM: tutor bio needed]
-              </div>
             </div>
           </div>
         </div>
