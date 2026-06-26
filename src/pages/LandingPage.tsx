@@ -202,18 +202,39 @@ Please confirm my free trial session.`
 
   const coursesList = [
     {
-      title: 'Quran Reading / Nazra',
-      description: 'Ideal for beginners and children. Learn the foundations of Arabic letters, proper pronunciations, and start reciting the Quran fluently.',
+      title: 'Quran Reading & Recitation (Nazra)',
+      description: 'Ideal for beginners and children. Learn the foundations of Arabic letters, proper pronunciation, and start reciting the Quran fluently.',
       duration: '6 Months',
       timeline: '30 Mins / Session',
-      features: ['Basic Qaida rules', 'Fluency training', 'Daily revision slot', 'Basic Duas & Salah steps'],
+      features: ['Basic Qaida rules', 'Recitation fluency training', 'Daily revision slot', 'Basic Duas & Salah steps'],
     },
     {
       title: 'Tajweed Rules Course',
-      description: 'Master the rules of recitation. Focuses on articulation points of letters, rules of elongation, silent letters, and melodic recitation rules.',
+      description: 'Master the science of recitation. Focuses on articulation points of letters, rules of elongation, silent letters, and melodic recitation rules.',
       duration: '6 Months',
       timeline: '30 Mins / Session',
       features: ['Makharij & Sifat rules', 'Advanced vocal practices', 'Experienced Tajweed tutors', 'Authentic certifications'],
+    },
+    {
+      title: 'Quran Memorization (Hifz)',
+      description: 'Structured memorization of selected Surahs or the entire Quran under expert supervision. Focuses on daily retention and long-term review.',
+      duration: 'Flexible',
+      timeline: '30-60 Mins / Session',
+      features: ['Personalized Hifz plan', 'Advanced retention training', 'Daily assessment loop', 'Revision techniques (Dohr)'],
+    },
+    {
+      title: 'Arabic Language Basics',
+      description: 'Master reading, writing, and basic conversational Arabic. Understand Quranic grammar and vocabulary step-by-step.',
+      duration: '6 Months',
+      timeline: '30 Mins / Session',
+      features: ['Quranic vocabulary', 'Grammar (Nahw & Sarf)', 'Spoken conversation basics', 'Writing & script parsing'],
+    },
+    {
+      title: 'Islamic Studies for Kids & Adults',
+      description: 'Comprehensive Islamic curriculum covering Hadith, Aqeedah (theology), Seerah (prophetic biography), Fiqh (jurisprudence), and daily etiquettes.',
+      duration: 'Ongoing',
+      timeline: '30 Mins / Session',
+      features: ['Hadith study & morals', 'Prophetic history (Seerah)', 'Practical Fiqh guides', 'Aqeedah & Salah lessons'],
     },
   ];
 
@@ -242,6 +263,53 @@ Please confirm my free trial session.`
 
   return (
     <div className="animate-fade" style={{ minHeight: '100vh' }}>
+      {/* SEO JSON-LD Structured Data */}
+      <script 
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "EducationalOrganization",
+            "name": "Al Kareem Quran Institute",
+            "url": "https://alkareemquraninstitute.com",
+            "logo": "https://alkareemquraninstitute.com/logo.jpg",
+            "description": "Online live 1-on-1 Quran and Islamic education classes for children, sisters, and adults. Learn Quran recitation, Tajweed, Hifz, and Arabic basics from native scholars.",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "US"
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+923482648719",
+              "contactType": "customer support"
+            }
+          })
+        }}
+      />
+      
+      <script 
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "itemListElement": coursesList.map((course, idx) => ({
+              "@type": "ListItem",
+              "position": idx + 1,
+              "item": {
+                "@type": "Course",
+                "name": course.title,
+                "description": course.description,
+                "provider": {
+                  "@type": "EducationalOrganization",
+                  "name": "Al Kareem Quran Institute",
+                  "sameAs": "https://alkareemquraninstitute.com"
+                }
+              }
+            }))
+          })
+        }}
+      />
       
       {/* Quranic Verse Banner Marquee */}
       <div style={{
@@ -536,7 +604,7 @@ Please confirm my free trial session.`
             </p>
           </div>
           
-          <div className="grid-container grid-2">
+          <div className="grid-container grid-3">
             {coursesList.map((course, idx) => (
               <div key={idx} className="flip-card scroll-reveal">
                 <div className="flip-card-inner">
@@ -744,6 +812,110 @@ Please confirm my free trial session.`
             <div>
               <h4 style={{ fontSize: '1rem', color: '#ffffff' }}>Sister Fatima</h4>
               <span style={{ fontSize: '0.8rem', color: '#b3cbbd' }}>Parent from London, UK</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <CalligraphyDivider />
+
+      {/* Tutors & Credentials Section */}
+      <section id="tutors" className="section-padding scroll-reveal" style={{ borderTop: '1px solid var(--border-glass)', borderBottom: '1px solid var(--border-glass)' }}>
+        <div className="max-width-container">
+          <div style={{ textAlign: 'center', marginBottom: '50px' }}>
+            <span className="badge-gold" style={{ marginBottom: '10px', display: 'inline-block' }}>Tutors Directory</span>
+            <h2 style={{ fontSize: '2.5rem', color: 'var(--primary-deep)' }}>Our Certified Native Arabic Scholars</h2>
+            <p style={{ color: 'var(--text-muted)', maxWidth: '600px', margin: '10px auto 0' }}>
+              Learn from qualified male and female teachers with active Ijazahs and educational trust.
+            </p>
+          </div>
+
+          <div className="grid-container grid-3">
+            {/* Tutor 1 */}
+            <div className="glass-panel" style={{ padding: '30px', textAlign: 'center' }}>
+              <div style={{
+                width: '100px',
+                height: '100px',
+                borderRadius: '50%',
+                backgroundColor: 'var(--primary-deep)',
+                margin: '0 auto 20px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                border: '3px solid var(--gold-accent)',
+                boxShadow: 'var(--shadow-gold)',
+                color: 'white',
+                fontSize: '2rem',
+                fontWeight: 700
+              }}>
+                SA
+              </div>
+              <h3 style={{ fontSize: '1.25rem', color: 'var(--primary-deep)', marginBottom: '4px' }}>Sheikh Ahmed Al-Azhar</h3>
+              <span className="badge-gold" style={{ fontSize: '0.65rem', padding: '2px 8px' }}>Ijazah Certified</span>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginTop: '16px', fontStyle: 'italic' }}>
+                "Graduated from Al-Azhar University, specializing in Tajweed Rules and Quran Recitation pedagogy with over 8 years of teaching experience."
+              </p>
+              <div style={{ fontSize: '0.75rem', color: 'var(--gold-hover)', fontWeight: 700, marginTop: '12px' }}>
+                [CONFIRM: tutor bio needed]
+              </div>
+            </div>
+
+            {/* Tutor 2 */}
+            <div className="glass-panel" style={{ padding: '30px', textAlign: 'center' }}>
+              <div style={{
+                width: '100px',
+                height: '100px',
+                borderRadius: '50%',
+                backgroundColor: 'var(--primary-deep)',
+                margin: '0 auto 20px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                border: '3px solid var(--gold-accent)',
+                boxShadow: 'var(--shadow-gold)',
+                color: 'white',
+                fontSize: '2rem',
+                fontWeight: 700
+              }}>
+                UF
+              </div>
+              <h3 style={{ fontSize: '1.25rem', color: 'var(--primary-deep)', marginBottom: '4px' }}>Ustadha Fatima</h3>
+              <span className="badge-emerald" style={{ fontSize: '0.65rem', padding: '2px 8px' }}>Female Tutor Directory</span>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginTop: '16px', fontStyle: 'italic' }}>
+                "Specialist Quran memorization (Hifz) tutor for children and sisters. Holds multiple Ijazahs in Hafs 'an 'Asim recitation."
+              </p>
+              <div style={{ fontSize: '0.75rem', color: 'var(--gold-hover)', fontWeight: 700, marginTop: '12px' }}>
+                [CONFIRM: tutor bio needed]
+              </div>
+            </div>
+
+            {/* Tutor 3 */}
+            <div className="glass-panel" style={{ padding: '30px', textAlign: 'center' }}>
+              <div style={{
+                width: '100px',
+                height: '100px',
+                borderRadius: '50%',
+                backgroundColor: 'var(--primary-deep)',
+                margin: '0 auto 20px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                border: '3px solid var(--gold-accent)',
+                boxShadow: 'var(--shadow-gold)',
+                color: 'white',
+                fontSize: '2rem',
+                fontWeight: 700
+              }}>
+                SY
+              </div>
+              <h3 style={{ fontSize: '1.25rem', color: 'var(--primary-deep)', marginBottom: '4px' }}>Sheikh Yasir</h3>
+              <span className="badge-gold" style={{ fontSize: '0.65rem', padding: '2px 8px' }}>Islamic Studies Lead</span>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginTop: '16px', fontStyle: 'italic' }}>
+                "Completed higher studies in Medina, teaching Islamic theology (Aqeedah), jurisprudential basics (Fiqh), and prophetic history (Seerah)."
+              </p>
+              <div style={{ fontSize: '0.75rem', color: 'var(--gold-hover)', fontWeight: 700, marginTop: '12px' }}>
+                [CONFIRM: tutor bio needed]
+              </div>
             </div>
           </div>
         </div>
